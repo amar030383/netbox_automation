@@ -45,6 +45,33 @@ The following environment variables are required:
 - `ansible_user`: Device username
 - `ansible_become_pass`: Enable password
 
+### Setting Environment Variables
+
+#### Temporary (for current session):
+```bash
+export NETBOX_TOKEN="your_token_here"
+export ansible_password="your_device_password"
+export ansible_user="your_device_username"
+export ansible_become_pass="your_enable_password"
+```
+
+#### Permanent (for current user):
+1. Add to your `~/.bashrc` or `~/.bash_profile`:
+```bash
+echo 'export NETBOX_TOKEN="your_token_here"' >> ~/.bashrc
+echo 'export ansible_password="your_device_password"' >> ~/.bashrc
+echo 'export ansible_user="your_device_username"' >> ~/.bashrc
+echo 'export ansible_become_pass="your_enable_password"' >> ~/.bashrc
+```
+
+2. Reload your shell configuration:
+```bash
+source ~/.bashrc
+```
+
+#### Secure Storage
+For better security, consider using a secrets management tool like `pass` or Ansible Vault to store sensitive credentials.
+
 ## Usage
 
 1. Set up the required environment variables:
