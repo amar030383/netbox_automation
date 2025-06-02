@@ -1,0 +1,9 @@
+- name: Create device role in NetBox
+  netbox.netbox.netbox_device_role:
+    netbox_url: "{{ netbox_url }}"
+    netbox_token: "{{ netbox_token }}"
+    data:
+      name: "{{ data.name }}"
+      color: "{{ data.color | default('0000ff') }}"
+      vm_role: "{{ data.vm_role | default(false) }}"
+    state: present

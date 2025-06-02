@@ -1,0 +1,26 @@
+---
+- name: Get serial numbers from IOS and NX-OS devices
+  hosts: all
+  gather_facts: true
+  vars:
+    netbox_url: "http://192.168.67.100:8000"  # Replace with your NetBox URL
+    netbox_token: "d6a270a7243bcb7b287a9b0b90356824768ecf9d"  # Get from environment variable
+    device_status: "active"
+    validate_certs: true
+
+  tasks:
+    - name: Include IOS tasks
+      import_tasks: ios/ios_tasks.yml
+      when: ansible_network_os == 'cisco.ios.ios'
+
+    - name: Include NX-OS tasks
+      import_tasks: nxos/nxos_tasks.yml
+      when: ansible_network_os == 'cisco.nxos.nxos'
+
+    - name: Create IOS device in NetBox
+      import_tasks: tasks/netbox/create_device.yml
+      when: ansible_network_os == 'cisco.ios.ios'
+
+    - name: Create NX-OS device in NetBox
+      import_tasks: tasks/netbox/create_device.yml
+      when: ansible_network_os == 'cisco.nxos.nxos'

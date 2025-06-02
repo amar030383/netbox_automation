@@ -1,0 +1,50 @@
+---
+- name: Test NetBox tasks
+  hosts: localhost
+  gather_facts: false
+  vars:
+    netbox_url: "http://192.168.67.100:8000"
+    netbox_token: "d6a270a7243bcb7b287a9b0b90356824768ecf9d"
+
+  tasks:
+
+    # Create site first
+    - import_tasks: tasks/netbox/create_site.yml
+      check_mode: yes
+      vars:
+        data:
+          name: "dfc03"
+          description: "Test site for validation"
+          status: "active"
+
+    # Create device type first
+    - import_tasks: tasks/netbox/create_device_type.yml
+      check_mode: yes
+      vars:
+        data:
+          manufacturer: "JUNIPER-MIST"
+          model: "AP41"
+          is_full_depth: true
+          u_height: 1
+
+    # Create device role first
+    - import_tasks: tasks/netbox/create_device_role.yml
+      check_mode: yes
+      vars:
+        data:
+          name: "ACCESS POINT"
+          color: "0000ff"
+          vm_role: false
+
+    # Create device for dfc01
+    - import_tasks: tasks/netbox/create_device.yml
+      check_mode: yes
+      vars:
+        device_name: "dfc01-device"
+        device_type: "AP41"
+        device_role: "ACCESS POINT"
+        site: "dfc03"
+        device_status: "active"
+        device_primary_ip4: "192.168.6.6"
+
+

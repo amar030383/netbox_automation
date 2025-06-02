@@ -1,0 +1,10 @@
+- name: Create device type in NetBox
+  netbox.netbox.netbox_device_type:
+    netbox_url: "{{ netbox_url }}"
+    netbox_token: "{{ netbox_token }}"
+    data:
+      manufacturer: "{{ data.manufacturer }}"
+      model: "{{ data.model }}"
+      is_full_depth: "{{ data.is_full_depth | default(true) }}"
+      u_height: "{{ data.u_height | default(1) }}"
+    state: present
