@@ -4,7 +4,7 @@
   gather_facts: true
   vars:
     netbox_url: "http://192.168.67.100:8000"  # Replace with your NetBox URL
-    netbox_token: "d6a270a7243bcb7b287a9b0b90356824768ecf9d"  # Get from environment variable
+    netbox_token: "{{ lookup('env', 'NETBOX_TOKEN') }}"  # Get from environment variable
     device_status: "active"
     validate_certs: true
 
