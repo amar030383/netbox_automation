@@ -104,27 +104,28 @@ export ansible_become_pass="your_enable_password"
 ansible-playbook -i inventory.ini data_collector_netbox.yml
 ```
 
-## Playbook Structure
-
-The playbook is organized as follows:
+## File Structure
 
 ```
-.
-├── data_collector_netbox.yml          # Main playbook
-├── inventory.ini                      # Device inventory
-├── ios/
-│   └── ios_tasks.yml                 # IOS-specific tasks
-├── nxos/
-│   └── nxos_tasks.yml                # NX-OS-specific tasks
-├── tasks/
+netbox-ansible-playbooks/
+├── data_collector_netbox.yml      # Main playbook
+├── inventory.ini                  # Inventory file
+├── ios/                          # IOS-specific tasks
+│   └── ios_tasks.yml
+├── junos/                        # Juniper-specific tasks
+│   └── junos_tasks.yml
+├── nxos/                         # NX-OS-specific tasks
+│   └── nxos_tasks.yml
+├── tasks/                        # Shared tasks
 │   └── netbox/
-│       └── create_device.yml         # NetBox device creation task
-└── tests/
-    └── test_netbox_tasks.yml         # Test playbook for NetBox tasks
+│       └── create_device.yml
+├── JuniperTest.yml               # Juniper test playbook
+└── requirements.yml              # Ansible collection requirements
 ```
 
 ## Device Information Flow
 
+1. Device-specific tasks (ios_tasks.yml/nxos_tasks.yml/junos_tasks.yml):
 1. Device-specific tasks (ios_tasks.yml/nxos_tasks.yml):
    - Collect serial number using device-specific facts
    - Store serial number in `device_serial` variable
