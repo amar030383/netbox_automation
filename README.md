@@ -72,9 +72,11 @@ The playbook is organized as follows:
 │   └── ios_tasks.yml                 # IOS-specific tasks
 ├── nxos/
 │   └── nxos_tasks.yml                # NX-OS-specific tasks
-└── tasks/
-    └── netbox/
-        └── create_device.yml         # NetBox device creation task
+├── tasks/
+│   └── netbox/
+│       └── create_device.yml         # NetBox device creation task
+└── tests/
+    └── test_netbox_tasks.yml         # Test playbook for NetBox tasks
 ```
 
 ## Device Information Flow

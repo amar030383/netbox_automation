@@ -16,11 +16,3 @@
     - name: Include NX-OS tasks
       import_tasks: nxos/nxos_tasks.yml
       when: ansible_network_os == 'cisco.nxos.nxos'
-
-    - name: Create IOS device in NetBox
-      import_tasks: tasks/netbox/create_device.yml
-      when: ansible_network_os == 'cisco.ios.ios'
-
-    - name: Create NX-OS device in NetBox
-      import_tasks: tasks/netbox/create_device.yml
-      when: ansible_network_os == 'cisco.nxos.nxos'
