@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: true
   vars:
-    netbox_url: "http://192.168.67.100:8000"  # Replace with your NetBox URL
+    netbox_url: "{{ lookup('env', 'NETBOX_IP') }}"  # Replace with your NetBox URL
     netbox_token: "{{ lookup('env', 'NETBOX_TOKEN') }}"  # Get from environment variable
     device_status: "active"
     validate_certs: true
@@ -16,3 +16,7 @@
     - name: Include NX-OS tasks
       import_tasks: nxos/nxos_tasks.yml
       when: ansible_network_os == 'cisco.nxos.nxos'
+
+    - name: Include Juniper tasks
+      import_tasks: junos/junos_tasks.yml
+      when: ansible_network_os == 'junipernetworks.junos.junos'

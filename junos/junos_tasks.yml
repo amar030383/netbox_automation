@@ -1,0 +1,23 @@
+---
+- name: Get Juniper serial number
+  debug:
+    msg: "{{ ansible_facts.net_serialnum }}"
+  when: ansible_network_os == 'junipernetworks.junos.junos'
+
+- name: Create device in NetBox with serial number
+  set_fact:
+    device_serial: "{{ ansible_facts.net_serialnum }}"
+  when: ansible_network_os == 'junipernetworks.junos.junos'
+
+- name: Set device variables from inventory
+  set_fact:
+    device_name: "{{ inventory_hostname }}"
+    device_type: "{{ type }}"
+    device_role: "{{ role }}"
+    site: "{{ site }}"
+    manufacturer: "{{ manufacturer }}"
+  when: ansible_network_os == 'junipernetworks.junos.junos'
+
+- name: Create device in NetBox
+  import_tasks: ../tasks/netbox/create_device.yml
+  when: ansible_network_os == 'junipernetworks.junos.junos'

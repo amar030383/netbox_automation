@@ -4,7 +4,7 @@
   gather_facts: false
   vars:
     netbox_url: "http://192.168.67.100:8000"
-    netbox_token: "d6a270a7243bcb7b287a9b0b90356824768ecf9d"
+    netbox_token: "{{ lookup('env', 'NETBOX_TOKEN') }}"
 
   tasks:
 

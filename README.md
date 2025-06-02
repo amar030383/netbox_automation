@@ -58,6 +58,7 @@ export ansible_become_pass="your_enable_password"
 #### Permanent (for current user):
 1. Add to your `~/.bashrc` or `~/.bash_profile`:
 ```bash
+echo 'export NETBOX_IP="your_netbox_ip_here"' >> ~/.bashrc
 echo 'export NETBOX_TOKEN="your_token_here"' >> ~/.bashrc
 echo 'export ansible_password="your_device_password"' >> ~/.bashrc
 echo 'export ansible_user="your_device_username"' >> ~/.bashrc
