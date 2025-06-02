@@ -1,12 +1,12 @@
 # NetBox Device Automation
 
-Automate device creation and management in NetBox using Ansible. This playbook collects device serial numbers from Cisco IOS and NX-OS devices and creates corresponding entries in NetBox.
+Automate device creation and management in NetBox using Ansible. This playbook collects device serial numbers from Cisco IOS, NX-OS, and Juniper devices and creates corresponding entries in NetBox.
 
 ## Features
 
-- Automatic collection of device serial numbers from Cisco IOS and NX-OS devices
+- Automatic collection of device serial numbers from Cisco IOS, NX-OS, and Juniper devices
 - Creation of devices in NetBox with proper device type, role, and site information
-- Support for both IOS and NX-OS device types
+- Support for both IOS, NX-OS, and Juniper device types
 - Device information pulled from inventory file
 
 ## Requirements
@@ -17,6 +17,16 @@ Automate device creation and management in NetBox using Ansible. This playbook c
   - `cisco.nxos`
   - `netbox.netbox`
 - NetBox API access with proper permissions
+
+### Installing Required Collections
+
+To install the required collections, run:
+
+```bash
+ansible-galaxy collection install -r requirements.yml
+```
+
+This will install all necessary collections for Cisco and Juniper device support.
 
 ## Inventory Structure
 
@@ -63,6 +73,12 @@ echo 'export NETBOX_TOKEN="your_token_here"' >> ~/.bashrc
 echo 'export ansible_password="your_device_password"' >> ~/.bashrc
 echo 'export ansible_user="your_device_username"' >> ~/.bashrc
 echo 'export ansible_become_pass="your_enable_password"' >> ~/.bashrc
+```
+
+#### For Juniper devices:
+```bash
+echo 'export JUNIPER_USER="your_juniper_username"' >> ~/.bashrc
+echo 'export JUNIPER_PASSWORD="your_juniper_password"' >> ~/.bashrc
 ```
 
 2. Reload your shell configuration:

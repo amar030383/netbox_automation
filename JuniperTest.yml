@@ -1,0 +1,21 @@
+---
+- name: Test Juniper device connectivity and commands
+  hosts: all
+  gather_facts: true
+
+  tasks:
+    # - name: Gather device facts
+    #   junipernetworks.junos.junos_facts:
+
+    # - name: Debug gathered facts
+    #   debug:
+    #     var: ansible_net_facts
+
+    - name: Run show version command
+      junipernetworks.junos.junos_command:
+        commands: show version
+      register: version_output
+
+    - name: Debug version output
+      debug:
+        var: version_output
